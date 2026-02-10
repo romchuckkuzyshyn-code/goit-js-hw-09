@@ -14,7 +14,7 @@ feedback.addEventListener('submit', onFormSubmit);
 
 function getFormData(event) {
   const name = event.target.name;
-  const value = event.target.value.trim();
+  const value = event.target.value;
   formData[name] = value;
   saveLS(STORAGE_KEY, formData);
 }
@@ -22,7 +22,10 @@ function getFormData(event) {
 function onFormSubmit(event) {
   event.preventDefault();
 
-  if (formData.email.length === 0 || formData.message.length === 0) {
+  if (
+    formData.email.trim().length === 0 ||
+    formData.message.trim().length === 0
+  ) {
     alert('Fill please all fields');
     return;
   }
